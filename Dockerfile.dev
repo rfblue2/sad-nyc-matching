@@ -1,0 +1,16 @@
+FROM node:12
+WORKDIR "/app"
+
+# for better caching, install dependencies before copying everything else
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install
+
+COPY . .
+EXPOSE 5000
+
+# install sudo, required for devcert
+RUN apt-get update && apt-get -y install sudo
+RUN sudo adduser --disabled-password $USER docker 
+
+CMD ["yarn", "server"]

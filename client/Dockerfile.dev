@@ -1,0 +1,11 @@
+FROM node:alpine
+WORKDIR "/app"
+
+# for better caching, install dependencies before copying everything else
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install
+
+COPY . .
+EXPOSE 3000
+CMD ["yarn", "start"]

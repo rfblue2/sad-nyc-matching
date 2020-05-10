@@ -1,0 +1,49 @@
+{
+  "name": "sadnyc",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose -f docker-compose.dev.yml up --build",
+    "setup": "yarn install && cd client && yarn install",
+    "start": "cd client && yarn build && cd .. && node ./server/bin/www",
+    "server": "NODE_ENV=development ./node_modules/.bin/nodemon --watch ./server ./server/bin/www",
+    "client": "NODE_ENV=develpment cd client && yarn start",
+    "lint": "./node_modules/.bin/eslint --fix server/**/*.js",
+    "server-test": "jest server",
+    "client-test": "cd client && yarn test",
+    "test": "yarn server-test && yarn client-test --watchAll=false"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./server/tests/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/client/"
+    ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/register": "^7.9.0",
+    "babel-jest": "^24.9.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mongoose": "^5.9.13",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.3",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^1.1.5",
+    "devcert": "^1.1.0",
+    "eslint": "^6.0.0",
+    "eslint-plugin-react": "^7.19.0",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
+}

@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo:4.0.18-xenial'
+    volumes:
+      - ./data/db:/data/db # copy local mongodb store into container
+    ports:
+      - "27017:27017"
+  server:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    volumes:
+      - /app/node_modules
+      - /app/client # do not track changes in client folder for server
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongo:27017/sadnyc
+    links:
+      - mongo
+    ports:
+      - "5000:5000"
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    stdin_open: true # see https://github.com/facebook/create-react-app/issues/8688
+    ports:
+      - "3000:3000"
