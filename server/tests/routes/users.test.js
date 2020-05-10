@@ -1,9 +1,7 @@
 import mongoose from 'mongoose'
 import User from '../../models/users'
 import supertest from 'supertest'
-import app from '../../app'
-
-process.env.NODE_ENV = global.__MONGO_URI__
+import createApp from '../../app'
 
 describe('Users', () => {
   let server = null
@@ -15,18 +13,19 @@ describe('Users', () => {
     })
   })
 
-  afterAll(async () => {
+  afterAll(async done => {
     await mongoose.connection.close()
+    done()
   })
 
   beforeEach(() => {
-    server = app.listen()
+    server = createApp(global.__MONGO_URI__).listen()
     request = supertest.agent(server)
   })
 
   afterEach(async () => {
     await mongoose.connection.db.dropDatabase()
-    server.close()
+    await server.close()
   })
 
   it('should post a user', async () => {

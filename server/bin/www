@@ -6,11 +6,13 @@
 
 require('@babel/register')
 require('regenerator-runtime/runtime')
-var app = require('../app')
+var createApp = require('../app')
 var debug = require('debug')('sadnyc:server')
 var http = require('http')
 var https = require('https')
 var devcert = require('devcert')
+
+var app = createApp(process.env.MONGODB_URI)
 
 /**
  * Get port from environment and store in Express.

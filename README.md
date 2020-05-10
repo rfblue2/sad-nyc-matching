@@ -46,9 +46,21 @@ the servers, unless Dockerfiles or package.json files are changed.
 
 !!Important:
 Local development with HTTPS is provided using the devcert library.
-As such, running the application for the first time will prompt you for your
-system password so that it can install a local certificate to your keychain.
+As such, running the application locally for the first time will prompt you for 
+your system password so that it can install a local certificate to your keychain.
 Note that some browsers will not accept the local certificate anyway, and will
 explicitly ask if you want to proceed to the site.  Since this is a development
 server it is safe to do so, but never do this if you see the warning on a real 
 website.
+
+If developing with docker, devcert will not have access to your system keychain
+and as a result you will still need to click through the security warnings on
+your browser if you try to access the server (https://localhost:5000).  For
+API testing, Postman is recommended.
+
+If your are testing without docker, you are responsible for spinning up your
+own MongoDB instance and supplying the MONGODB_URI environment variable.
+e.g.
+```
+export MONGODB_URI=mongodb://localhost:27017/sadnyc
+```

@@ -11,7 +11,7 @@
     "lint": "./node_modules/.bin/eslint --fix server/**/*.js",
     "server-test": "jest server",
     "client-test": "cd client && yarn test",
-    "test": "yarn server-test && yarn client-test --watchAll=false"
+    "test": "yarn server-test --forceExit && yarn client-test --watchAll=false"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -44,6 +44,7 @@
     "eslint": "^6.0.0",
     "eslint-plugin-react": "^7.19.0",
     "jest": "^24.9.0",
+    "mongodb": "^3.5.7",
     "supertest": "^4.0.2"
   }
 }

@@ -6,29 +6,34 @@ import mongoose from 'mongoose'
 
 import usersRouter from './routes/users'
 
-const app = express()
+const createApp = (mongoUri) => {
+  const app = express()
 
-app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(express.static(path.join(__dirname, '../client/build')))
+  app.use(logger('dev'))
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: false }))
+  app.use(cookieParser())
+  app.use(express.static(path.join(__dirname, '../client/build')))
 
-// Setup DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/sadnyc', 
-  {
-    'useNewUrlParser': true,
-    'useUnifiedTopology': true,
-  }
-)
+  // Setup DB
+  console.log(mongoUri)
+  mongoose.connect(mongoUri || process.env.MONGODB_URI || 'mongodb://mongo:27017/sadnyc', 
+    {
+      'useNewUrlParser': true,
+      'useUnifiedTopology': true,
+    }
+  )
 
-app.use('/api/users', usersRouter)
-app.get('/healthcheck', (req, res) => {
-  res.send('ok')
-})
+  app.use('/api/users', usersRouter)
+  app.get('/healthcheck', (req, res) => {
+    res.send('ok')
+  })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'))
-})
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+  })
 
-module.exports = app
+  return app
+}
+
+module.exports = createApp

@@ -9,8 +9,9 @@ describe('Users', () => {
     })
   })
 
-  afterAll(async () => {
+  afterAll(async done => {
     await mongoose.connection.close()
+    done()
   })
 
   it('should create and save a user', async () => {
