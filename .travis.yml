@@ -8,13 +8,8 @@ before_install:
 script:
   - docker-compose run -e CI=true tests
 
-after_success:
-  - docker login --username=rfblue2@gmail.com --password=$HEROKU_TOKEN registry.heroku.com
-  - docker build -t registry.heroku.com/sad-nyc-matching-staging/server .
-  - docker push registry.heroku.com/sad-nyc-matching-staging/server
-  - ./release.sh
-
-
-branches:
-  only:
-    - master
+deploy:
+  provider: script
+  script: deploy.sh
+  on:
+    branch: master
