@@ -1,0 +1,8 @@
+deploy:
+  provider: heroku
+  api_key:
+    secure: OLg0SdPo5ireBcKjpDeAyS2rPuZ+YcxS63cUe0T/6RxdXZlFo6RcP1y+hKFkpC4Ko/6IRuHjtewdIpJnbN2P4OdWYxb/46VViHptZM+Og8NKcfgCcBYs9ZpHIyftv3NVmx4DUA4jJoSm+IO6jfnqU7iX7nFv3SV2cZnXK4QxBAjiVXEbRMVcBrjMlSiRS9AMi+c5Pjl6wqChoRDBJRm0bSPPavQuGNu8MVZJSf+XijCZiUMbMYAIfJdKhdqw7eXtJffXGtvUN1HeUPxHNtFU709mq1DO9/E/nYjSaJSU/nkbrKhmu4gO7nOBu+AePV6QR4urMaLAawj9yr1dziFxfWtoWuDkp7Chebyali8oNJMwIluBS9Mc+vlsuySfoBrPIcJzeQe7a8n0t5Ody0fFI6IJEeHWtsey0ewHKAO8quI9r7ksc6Bf7zxr/dNQTuICYEHshtTzi9g6v43AN6km/M/PoW8Z5lgz8JNSE0Zz5WFMn+tIrU19QsHcbwInlT+b/oPKKEP9JBgsSH7YLxSQGw3psJl+lAsmXCowVlqPyVOg2EebYl9JLai+sOtocoSHq2kpU9emYIkcJuif/L6rin5CJPicivt801Su6QF+rMKklTFpgeRPUuNUhPAUmXwC+TH5uci2N98KyhbfDdT0LDVzaU/EgBBC39Bs4MhdrWY=
+  app: sad-nyc-matching
+  on:
+    repo: rfblue2/sad-nyc-matching
+  skip_cleanup: 'true'
