@@ -13,3 +13,8 @@ after_success:
   - docker build -t registry.heroku.com/sad-nyc-matching-staging/server .
   - docker push registry.heroku.com/sad-nyc-matching-staging/server
   - ./release.sh
+
+
+branches:
+  only:
+    - master
