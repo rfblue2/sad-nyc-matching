@@ -1,5 +1,7 @@
 # SAD (NYC) Matching app
 
+[![Build Status](https://travis-ci.org/rfblue2/sad-nyc-matching.svg?branch=master)](https://travis-ci.org/rfblue2/sad-nyc-matching)
+
 This is a MongoDB backed node express react app intended to be deployed via 
 Heroku.  
 
