@@ -23,4 +23,17 @@ describe('Users', () => {
     expect(savedUser.name).toBe('testuser')
   })
 
+  it('should not serialize the facebook fields', async () => {
+    const user = new Users({
+      name: 'testuser',
+      facebookProvider: {
+        id: 'abc',
+        token: 'def'
+      }
+    })
+
+    const userObj = user.toObject()
+    expect(userObj.facebookProvider).not.toBeDefined()
+  })
+
 })

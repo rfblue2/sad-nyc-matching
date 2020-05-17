@@ -16,7 +16,6 @@ const createApp = (mongoUri) => {
   app.use(express.static(path.join(__dirname, '../client/build')))
 
   // Setup DB
-  console.log(mongoUri)
   mongoose.connect(mongoUri || process.env.MONGODB_URI || 'mongodb://mongo:27017/sadnyc', 
     {
       'useNewUrlParser': true,
