@@ -1,0 +1,28 @@
+version: '3'
+services:
+  tests:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - /app/node_modules
+      - /app/client/node_modules
+      - .:/app
+    environment:
+      - NODE_ENV=testing
+    command: "bash -c 'yarn lint && yarn test'"
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - /app/node_modules
+      - /app/client/node_modules
+      - .:/app
+    environment:
+      - NODE_ENV
+      - MONGODB_URI
+      - FB_APP_SECRET
+      - JWT_SECRET
+    ports:
+      - "5000:5000"
