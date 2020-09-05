@@ -1,6 +1,6 @@
 # Example App
 
-[![Build Status](https://travis-ci.org/rfblue2/example-app.svg?branch=master)](https://travis-ci.org/rfblue2/example-app)
+[![Build Status](https://travis-ci.com/rfblue2/example-app.svg?branch=master)](https://travis-ci.com/rfblue2/example-app)
 
 This is a MongoDB backed node express react app intended to be deployed via 
 Heroku.  

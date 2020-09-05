@@ -8,9 +8,9 @@ before_install:
 script:
   - docker-compose run -e CI=true tests
 
-deploy:
-  provider: script
-  script: bash ./deploy.sh
-  skip_cleanup: true
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: bash ./deploy.sh
+#   skip_cleanup: true
+#   on:
+#     branch: master
